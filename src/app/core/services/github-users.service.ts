@@ -15,6 +15,7 @@ export class GithubUsersService {
     if (params.username) {
       url.searchParams.set('q', params.username);
     }
+    url.searchParams.set('per_page', '10');
 
     return this.http.get<{ items: GithubUser[]; total_count: number; incomplete_results: boolean }>(
       url.toString()
