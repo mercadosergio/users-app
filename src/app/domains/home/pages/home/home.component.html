@@ -1,0 +1,28 @@
+<div class="min-h-screen bg-white">
+  <div class="container mx-auto px-4 py-8 max-w-6xl">
+    <div class="text-center mb-8">
+      <h1 class="text-4xl font-bold text-foreground mb-4 text-balance">
+        Buscador de Usuarios de GitHub
+      </h1>
+      <p class="text-muted-foreground text-lg">
+        Busca y explora perfiles de desarrolladores en GitHub
+      </p>
+    </div>
+
+    <div class="max-w-2xl mx-auto">
+      <app-search-bar (sendValue)="searchUsers($event)" />
+    </div>
+
+    <div class="space-y-4 mt-3">
+      <h2 class="text-center text-2xl font-semibold text-gray-900 mb-4">
+        Resultados de la búsqueda ({{ usersResource.value().items.length }} usuarios)
+      </h2>
+
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        @for (user of usersResource.value().items; track user.id) {
+        <app-user-card [user]="user"></app-user-card>
+        }
+      </div>
+    </div>
+  </div>
+</div>

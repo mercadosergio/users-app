@@ -1,1 +1,26 @@
-<p>search-bar works!</p>
+<div class="flex items-center gap-2">
+  <div class="relative flex-1">
+    <fa-icon
+      [icon]="faSearch"
+      class="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4"
+    />
+    <input
+      [value]="searchValue()"
+      type="text"
+      placeholder="Escribe tu búsqueda aquí..."
+      class="w-full pl-10 pr-4 py-3 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+      (input)="onInput($event)"
+      (keydown.enter)="onSearch()"
+    />
+  </div>
+  <button
+    class="px-6 py-3 bg-blue-600 disabled:bg-blue-600/70 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+    (click)="onSearch()"
+    [disabled]="searchValue().length < 4"
+  >
+    Buscar
+  </button>
+</div>
+@if(searchValue().length < 4 || searchValue().length > 0){
+<p class="mt-2 text-sm text-red-600">El término de búsqueda debe tener minimo 4 caracteres.</p>
+}
