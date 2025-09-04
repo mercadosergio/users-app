@@ -21,7 +21,7 @@ Sergio Mercado Salazar
 ## Instalación
 
 1. Clonar el repositorio
-   `git clone https://github.com/mercadosergio/projects-app.git`
+   `git clone https://github.com/mercadosergio/users-app.git`
 
 2. Una vez clonado el repositorio, abrir la consola de comandos y ubicarse en el directorio raiz del proyecto, allí ejecutar `npm install`.
 
