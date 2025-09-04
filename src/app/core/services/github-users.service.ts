@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { GithubUser, UserDetail } from '../models/interfaces/github-user.interface';
-import { map } from 'rxjs';
+import { forkJoin, map, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

@@ -17,12 +17,10 @@ export const userScoreGuard: CanActivateFn = (route, state) => {
   return githubService.getUserByUsername(username).pipe(
     map((user) => {
       if (user && user.score >= 30.0) {
-        console.log('es mayor o igual a 30');
-
         return true;
       } else {
         router.navigate(['/']);
-        console.log('es menor a 30');
+        alert('Acceso denegado: El usuario no cumple con el puntaje mínimo requerido.');
         return false;
       }
     }),

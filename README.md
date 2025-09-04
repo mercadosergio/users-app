@@ -26,3 +26,11 @@ Sergio Mercado Salazar
 2. Una vez clonado el repositorio, abrir la consola de comandos y ubicarse en el directorio raiz del proyecto, allí ejecutar `npm install`.
 
 3. Para lanzar la aplicación en ambiente de desarrollo ejecute en la consola `ng serve` e interactue con las caracteristicas de la misma.
+
+## Vistas
+
+![Resultados](/public/cap-1.png)
+
+![Grafico de barras](/public/cap-2.png)
+
+![Detalle](/public/cap-3.png)

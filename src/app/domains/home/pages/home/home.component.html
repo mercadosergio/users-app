@@ -15,14 +15,28 @@
 
     <div class="space-y-4 mt-3">
       <h2 class="text-center text-2xl font-semibold text-gray-900 mb-4">
-        Resultados de la búsqueda ({{ usersResource.value().items.length }} usuarios)
+        Resultados de la búsqueda ({{ users().length }} usuarios)
       </h2>
 
       <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        @for (user of usersResource.value().items; track user.id) {
+        @for (user of users(); track user.id) {
         <app-user-card [user]="user"></app-user-card>
         }
       </div>
     </div>
   </div>
+  @if(usersDetail().length > 1){
+  <div class="container mx-auto px-4 py-8 max-w-6xl bg-white border border-gray-200 rounded-lg p-6">
+    <h3 class="text-lg font-semibold text-gray-900 mb-4">Estadísticas de Seguidores</h3>
+    <div>
+      <apx-chart
+        [series]="chartOptions.series ?? []"
+        [chart]="chartOptions.chart ?? { type: 'bar' }"
+        [xaxis]="chartOptions.xaxis ?? {}"
+        [title]="chartOptions.title ?? { text: '' }"
+        [plotOptions]="chartOptions.plotOptions ?? {}"
+      ></apx-chart>
+    </div>
+  </div>
+  }
 </div>
