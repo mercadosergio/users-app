@@ -10,6 +10,7 @@ import {
   ApexXAxis,
   ApexTitleSubtitle,
 } from 'ng-apexcharts';
+import { ToastService } from '../../../../core/services/toast.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -29,6 +30,8 @@ export type ChartOptions = {
 })
 export default class HomeComponent {
   private githubUsersService = inject(GithubUsersService);
+  private toastService = inject(ToastService);
+
   searchTerm = signal('');
   usersDetail = signal<UserDetail[]>([]);
 
@@ -38,8 +41,13 @@ export default class HomeComponent {
   public chartOptions!: Partial<ChartOptions>;
 
   searchUsers(searchValue: string) {
-    this.usersDetail.set([]);
     this.searchTerm.set(searchValue);
+    if (this.searchTerm().length < 4) {
+      this.toastService.show('El texto debe tener 4 carácteres o más', 'error');
+      return;
+    }
+
+    this.usersDetail.set([]);
     this.githubUsersService.getUsersByParams({ username: this.searchTerm() }).subscribe({
       next: (resp) => {
         this.users.set(resp.items);

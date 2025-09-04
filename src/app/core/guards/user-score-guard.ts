@@ -2,10 +2,12 @@ import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { GithubUsersService } from '../services/github-users.service';
 import { catchError, map, of } from 'rxjs';
+import { ToastService } from '../services/toast.service';
 
 export const userScoreGuard: CanActivateFn = (route, state) => {
   const githubService = inject(GithubUsersService);
   const router = inject(Router);
+  const toastService = inject(ToastService);
 
   const username = route.paramMap.get('login');
 
@@ -20,7 +22,11 @@ export const userScoreGuard: CanActivateFn = (route, state) => {
         return true;
       } else {
         router.navigate(['/']);
-        alert('Acceso denegado: El usuario no cumple con el puntaje mínimo requerido.');
+        toastService.show(
+          'Acceso denegado: El usuario no cumple con el puntaje mínimo requerido.',
+          'error'
+        );
+
         return false;
       }
     }),
